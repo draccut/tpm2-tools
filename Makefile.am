@@ -130,6 +130,7 @@ tpm2_tools = \
     tools/tpm2_flushcontext.c \
     tools/tpm2_getekcertificate.c \
     tools/tpm2_getrandom.c \
+    tools/tpm2_two_sources_rd.c \
     tools/tpm2_gettime.c \
     tools/tpm2_hash.c \
     tools/tpm2_hierarchycontrol.c \
@@ -237,7 +238,8 @@ check_PROGRAMS = \
     test/unit/test_cc_util \
     test/unit/test_tpm2_eventlog \
     test/unit/test_tpm2_eventlog_yaml \
-    test/unit/test_object
+    test/unit/test_object \
+    test/unit/test_tpm2_two_sources_rd
 
 TESTS += $(ALL_SYSTEM_TESTS)
 
@@ -323,6 +325,9 @@ test_unit_test_tpm2_eventlog_yaml_LDADD = $(CMOCKA_LIBS) $(LDADD)
 
 test_unit_test_object_CFLAGS = $(AM_CFLAGS) $(CMOCKA_CFLAGS)
 test_unit_test_object_LDADD = $(CMOCKA_LIBS) $(LDADD)
+
+test_unit_test_tpm2_two_sources_rd_CFLAGS = $(AM_CFLAGS) $(CMOCKA_CFLAGS)
+test_unit_test_tpm2_two_sources_rd_LDADD  = $(CMOCKA_LIBS) $(LDADD)
 
 AM_TESTS_ENVIRONMENT =	\
 	export TPM2_ABRMD=$(TPM2_ABRMD); \

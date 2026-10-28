@@ -326,7 +326,7 @@ test_unit_test_tpm2_eventlog_yaml_LDADD = $(CMOCKA_LIBS) $(LDADD)
 test_unit_test_object_CFLAGS = $(AM_CFLAGS) $(CMOCKA_CFLAGS)
 test_unit_test_object_LDADD = $(CMOCKA_LIBS) $(LDADD)
 
-test_unit_test_tpm2_two_sources_rd_CFLAGS = $(AM_CFLAGS) $(CMOCKA_CFLAGS)
+test_unit_test_tpm2_two_sources_rd_CFLAGS = $(AM_CFLAGS) $(CMOCKA_CFLAGS) -DUNIT_TESTING
 test_unit_test_tpm2_two_sources_rd_LDADD  = $(CMOCKA_LIBS) $(LDADD)
 
 AM_TESTS_ENVIRONMENT =	\

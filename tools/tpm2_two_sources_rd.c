@@ -265,9 +265,10 @@ static tool_rc tpm2_tool_onstop(ESYS_CONTEXT *ectx)
     return tool_rc_success;
 }
 
-TPM2_TOOL_REGISTER("tpm2_two_sources_rd",
+#ifndef UNIT_TESTING
+TPM2_TOOL_REGISTER("two_sources_rd",
                    tpm2_tool_onstart,
                    tpm2_tool_onrun,
                    tpm2_tool_onstop,
                    NULL);
-
+#endif

@@ -2,28 +2,38 @@
 
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    tpm2-tools
-    tpm2-tss
-    pkg-config
+    # Build-Tools
     autoconf
     automake
     libtool
     autoconf-archive
-    openssl
-    curl
+    pkg-config
     gnumake
     gcc
+    pandoc
+
+    # TPM-Stack
+    tpm2-tss
+    tpm2-abrmd
+    swtpm
+
+    # Libraries
+    openssl
+    curl
     cmocka
+    dbus
+
+    # Tests
+    python3
+    python3Packages.pyyaml
+    expect
   ];
 
   shellHook = ''
-    echo "-----------------------------------------------------------------------"
-    echo " 1. Build-System vorbereiten:"
-    echo "    ./bootstrap && ./configure --enable-unit && make -j16"
-    echo ""
-    echo " 2. Alle Unit- und Integrationstests ausführen:"
-    echo "    make check"
-    echo ""
-    echo "-----------------------------------------------------------------------"
+    echo "---------------------------------------------------"
+    echo "  ./bootstrap && ./configure && make -j\$(nproc)"
+    echo "  make"
+    echo "---------------------------------------------------"
+    export PATH="${pkgs.tpm2-abrmd}/bin:${pkgs.swtpm}/bin:$PATH"
   '';
 }
